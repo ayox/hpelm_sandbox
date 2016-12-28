@@ -4,16 +4,19 @@ This network take an estimated time of ~ 3.83849191666 seconds to train and an a
 
 ## Usage
 create virtual enviroment : 
- `virtualenv venv 
-   source venv\bin\activate ` 
-   
+```shell
+virtualenv venv 
+source venv\bin\activate
+```
+
 install requirements using :
-
-`pip install -r requirements.txt `
-
-then simply : 
-
-` python mnits.py ` 
+```shell
+pip install -r requirements.txt `
+```
+run using : 
+```shell
+python mnits.py
+``` 
 
 MNIST data set : http://yann.lecun.com/exdb/mnist/
 ## Reference
