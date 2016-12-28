@@ -19,8 +19,9 @@ python mnits.py
 ``` 
 
 ## Reference
-documentation for [HPELM](http://hpelm.readthedocs.io/en/latest/index.html)
-MNIST data set : http://yann.lecun.com/exdb/mnist/
+[HPELM Docs](http://hpelm.readthedocs.io/en/latest/index.html)
+
+[MNIST Dataset](http://yann.lecun.com/exdb/mnist/)
 
 ## License  
 [GNU GENERAL PUBLIC LICENSE](https://github.com/ayox/hpelm_mnist/blob/master/LICENSE)
