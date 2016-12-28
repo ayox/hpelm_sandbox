@@ -3,7 +3,11 @@ This an attempt to run High performance extreme learning machine (HPELM) on MNIS
 This network take an estimated time of ~ 3.83849191666 seconds to train and an accuracy of ~ 0.9327 
 
 ## Usage
-to run you need to install requirements using :
+create virtual enviroment : 
+ `virtualenv venv 
+   source venv\bin\activate ` 
+   
+install requirements using :
 
 `pip install -r requirements.txt `
 
