@@ -1,4 +1,4 @@
-# HPELM MINST
+# HPELM MNIST
 This an attempt to run High performance extreme learning machine (HPELM) on MNIST.
 This network take an estimated time of ~ 3.83849191666 seconds to train and an accuracy of ~ 0.9327 
 
