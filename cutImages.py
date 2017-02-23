@@ -32,4 +32,4 @@ def show_cropped_img(image_path):
     Image._show(im)
 
 # example.to.use
-# show_cropped_img('/media/aymen/DATA/datasets/UECFOOD100/1/35.jpg')
+# show_cropped_img('/media/aymen/DATA/datasets/UECFOOD100/1/1.jpg')
