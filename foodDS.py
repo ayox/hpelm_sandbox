@@ -5,7 +5,8 @@ import time
 # from PIL import Image
 # from numpy import array
 # from scipy.misc import imresize
-# from random import shuffle
+from sklearn.utils import shuffle
+
 # from os import listdir
 # from os.path import isfile, join
 # from cutImages import cut_image
@@ -35,53 +36,84 @@ import time
 #     return imagesList
 np.set_printoptions(threshold=100)
 print('lodaing... ')
-imagesList = np.load('foodDS_resized_cropped32_float.npy')
+# imagesList = np.load('UECFOOD_100_1000Features_train.npy')
+imagesList = np.loadtxt('features/344trainingdata.svm')
+imagesList = shuffle(imagesList)
+print ('imaglist full', imagesList.shape)
+trainImagesList = imagesList[0:int(imagesList.__len__() * .8), :]
+testImagesList = imagesList[int(imagesList.__len__() * .8):, :]
+print ('trainImagesList', trainImagesList.shape)
+print ('testImagesList', testImagesList.shape)
+
 epoch = 3
-batch_size = imagesList.__len__() / epoch
-hidden_num = 2000
-_inputs = 3072
-_outputs = 101
+batch_size = trainImagesList.__len__() / epoch
+hidden_num = 2500
+_inputs = 344
+_outputs = 100
+
 print("batch_size : {}".format(batch_size))
 print("hidden_num : {}".format(hidden_num))
 start_time = time.time()
-k = 1
 elm = ELM(_inputs, _outputs, batch=batch_size)
 elm.add_neurons(hidden_num, "tanh")
 old_batch_size_k = 0
+data = trainImagesList
+
+k = 1
 while k <= epoch:
+    # shuffle(trainImagesList)
     print("batch : {}".format(k))
-    data = imagesList
-    print (data.shape, data.dtype)
-    train_x = np.array(data[old_batch_size_k + 1:(batch_size * k), 1:], dtype="float")
-    train_y = np.array(data[old_batch_size_k + 1:(batch_size * k), 0], dtype="int")
-    old_batch_size_k = batch_size * k
+    # print (data.shape, data.dtype)
+    # # dynamic
+    # train_x = np.array(data[old_batch_size_k:(batch_size * k), 1:], dtype="float")
+    # train_y = np.array(data[old_batch_size_k:(batch_size * k), 0], dtype="int")
+    # if k == epoch:
+    #     train_x = np.array(data[old_batch_size_k:, 1:], dtype="float")
+    #     train_y = np.array(data[old_batch_size_k:, 0], dtype="int")
+    # old_batch_size_k = batch_size * k
+    # print (train_x.shape, train_y.shape)
+
+    # whole
+    train_x = np.array(data[:, 1:], dtype="float")
+    train_y = np.array(data[:, 0], dtype="int")
     print ("X", train_x.shape)
     print ("Y", train_y.shape)
+    # end whole
     train_y = np.eye(np.max(train_y) + 1)[train_y]
     elm.train(train_x, train_y)
     k += 1
 
 end_time = time.time()
 
-testImagesList = np.load('foodDS_resized_cropped32_test_float.npy')
-test_x = np.array(testImagesList[:, 1:], dtype="float")
-print (testImagesList[:, 0], testImagesList.__len__())
-test_y = np.array(testImagesList[:, 0], dtype="int")
-test_y = np.eye(np.max(test_y) + 1)[test_y]
-#
-Y = elm.predict(test_x)
-predict = []
-for y in Y:
-    predict.append(y.argmax())
 
-gt = []
-for y in test_y:
-    gt.append(y.argmax())
+def predict(_testImagesList):
+    # testImagesList = np.load(testPath)
+    testList = _testImagesList
 
-save = []
-for _ in np.arange(0, len(gt)):
-    k = True if gt[_] == predict[_] else False
-    save.append(k)
-#
-print(" %s seconds" % (end_time - start_time))
-print("accuracy: {0}".format(np.mean(save)))
+    # print ('testImagesList', testList, testList.shape)
+    test_x = np.array(testList[:, 1:], dtype="float")
+    test_y = np.array(testList[:, 0], dtype="int")
+    test_y = np.eye(np.max(test_y) + 1)[test_y]
+    #
+    Y = elm.predict(test_x)
+    predict = []
+    for y in Y:
+        predict.append(y.argmax())
+
+    gt = []
+    for y in test_y:
+        gt.append(y.argmax())
+
+    save = []
+    for _ in np.arange(0, len(gt)):
+        k = True if gt[_] == predict[_] else False
+        save.append(k)
+
+    return save
+
+
+test = predict(testImagesList)
+print("%s seconds" % (end_time - start_time))
+print("test accuracy: {0}".format(np.mean(test)))
+train = predict(trainImagesList)
+print("train accuracy: {0}".format(np.mean(train)))
