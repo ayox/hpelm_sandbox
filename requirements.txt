@@ -1,3 +1,0 @@
-hpelm
-tensorflow
-numpy
