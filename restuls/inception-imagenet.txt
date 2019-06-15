@@ -1,0 +1,26 @@
+
+Food101 - 10 classes - 900 sample : 
+
+('imaglist full', (9000, 2049))
+('trainImagesList', (7200, 2049))
+('testImagesList', (1800, 2049))
+hidden_num : 1500
+test accuracy: 0.88
+train accuracy: 0.973888888889
+
+
+-------------------------------
+test accuracy: 0.874444444444
+train accuracy: 0.980793650794
+
+-------------------------------
+('imaglist full', (9000, 2049))
+('trainImagesList', (4500, 2049))
+('testImagesList', (4500, 2049))
+
+batch_size : 450
+hidden_num : 1500
+9.24484300613 seconds
+
+test accuracy: 0.862888888889
+train accuracy: 0.990888888889

@@ -1,0 +1,59 @@
+ 
+('imaglist full', (14360, 101))
+('trainImagesList', (10052, 101))
+('testImagesList', (4308, 101))
+
+batch_size : 2010
+hidden_num : 2500
+
+ 47.94439888 seconds
+test accuracy: 0.0299442896936
+train accuracy: 0.222045364107
+
+ ------------------------------------
+('imaglist full', (14360, 201))
+('trainImagesList', (10052, 201))
+('testImagesList', (4308, 201))
+
+batch_size : 2010
+hidden_num : 2500
+
+
+48.3713121414 seconds
+test accuracy: 0.0320334261838
+train accuracy: 0.220951054517
+ ------------------------------------
+('imaglist full', (14360, 501))
+('trainImagesList', (10052, 501))
+('testImagesList', (4308, 501))
+
+batch_size : 2010
+hidden_num : 2500
+
+45.1855559349 seconds
+test accuracy: 0.0301764159703
+train accuracy: 0.220055710306
+ ------------------------------------
+('imaglist full', (14360, 1001))
+('trainImagesList', (10052, 1001))
+('testImagesList', (4308, 1001))
+
+batch_size : 2010
+hidden_num : 2500
+
+52.5719711781 seconds
+test accuracy: 0.0306406685237
+train accuracy: 0.219757262236
+
+ ------------------------------------
+('imaglist full', (14360, 2001))
+('trainImagesList', (10052, 2001))
+('testImagesList', (4308, 2001))
+
+batch_size : 2010
+hidden_num : 2500
+
+67.1547129154 seconds
+test accuracy: 0.0222841225627
+train accuracy: 0.216474333466
+ ------------------------------------
